@@ -11,45 +11,17 @@ namespace lab1
         }
         static void Root(double a, double b, double c)
         {
-            if (a == 0)
+            if ((a == 0) & (b == 0) & (c == 0))
             {
-
-                double x = -c / b;
-                if (x >= 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Корни:");
-
-                    Console.WriteLine("{0}, {1}", Math.Sqrt(x), -Math.Sqrt(x));
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Действительных корней нет");
-                }
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Корней бесконечно много");
             }
             else
             {
-                double D = Disc(a, b, c);
-                if (D > 0)
+                if (a == 0)
                 {
 
-                    double x1 = (-b - Math.Sqrt(D)) / 2 * a;
-                    double x2 = (-b + Math.Sqrt(D)) / 2 * a;
-
-                    if ((x1 >= 0)||(x2 >= 0))
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Корни:");
-                        if (x1 >= 0) Console.WriteLine("{0}, {1}", Math.Sqrt(x1), -Math.Sqrt(x1));
-                        if (x2 >= 0) Console.WriteLine("{0}, {1}", Math.Sqrt(x2), -Math.Sqrt(x2));
-                    }
-
-                }
-                else
-                    if (D == 0)
-                {
-                    double x = -b / 2 * a;
+                    double x = -c / b;
                     if (x >= 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
@@ -65,46 +37,93 @@ namespace lab1
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Действительных корней нет");
+                    double D = Disc(a, b, c);
+                    if (D > 0)
+                    {
+
+                        double x1 = (-b - Math.Sqrt(D)) / (2 * a);
+                        double x2 = (-b + Math.Sqrt(D)) / (2 * a);
+
+                        if ((x1 >= 0) || (x2 >= 0))
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Корни:");
+                            if (x1 >= 0) Console.WriteLine("{0}, {1}", Math.Sqrt(x1), -Math.Sqrt(x1));
+                            if (x2 >= 0) Console.WriteLine("{0}, {1}", Math.Sqrt(x2), -Math.Sqrt(x2));
+                        }
+
+                    }
+                    else
+                        if (D == 0)
+                    {
+                        double x = -b / (2 * a);
+                        if (x >= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Корни:");
+
+                            Console.WriteLine("{0}, {1}", Math.Sqrt(x), -Math.Sqrt(x));
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Действительных корней нет");
+                        }
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Действительных корней нет");
+                    }
                 }
             }
         }
-        static void ParseInput(double[] a)
+        static void ParseInput(string[] args, double[] a, bool success)
         {
-            bool[] tr = new bool[3];
-            string str;
-            Console.WriteLine("Ax^4+Bx^2+C=0");
-            Console.WriteLine("Enter");
-            Console.Write("A: ");
-            str = Console.ReadLine();
-            tr[0] = double.TryParse(str, out a[0]);
-            Console.Write("B: ");
-            str = Console.ReadLine();
-            tr[1] = double.TryParse(str, out a[1]);
-            Console.Write("C: ");
-            str = Console.ReadLine();
-            tr[2] = double.TryParse(str, out a[2]);
-            if (tr[0] == false || tr[1] == false || tr[2] == false)
+            if (args.Length != 3 || !success)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Повторите ввод");
-                Console.ForegroundColor = ConsoleColor.Gray;
-                ParseInput(a);
+                if (args.Length != 3)
+                {
+                    string[] args2 = new string[3];
+                    args = args2;
+                }
+                Console.WriteLine("Введите A, B и C");
+                for (int k = 0; k < 3; k++)
+                    args[k] = Console.ReadLine();
             }
+            Byte i = 0;
+            foreach (string Ar in args)
+            {
+                success = Double.TryParse(Ar, out a[i]);
+                if (!success)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Произошла ошибка. Повторите ввод");
+                    Console.ResetColor();
+                    ParseInput(args, a, success);
+                    return;
+                }
+               else
+                Console.Write("{0 }  ", Ar);
+                i++;
+            }
+            Console.WriteLine();
         }
 
         static void Main(string[] args)
         {
+            bool success = true;
+
             Console.Title = "Подопригорова С. ИУ5-34Б";
             double[] a = new Double[3];
-            ParseInput(a);
+
+            ParseInput(args, a, success);
             Console.WriteLine("Дискриминант D = {0}", Disc(a[0], a[1], a[2]));
-        
             Root(a[0], a[1], a[2]);
             Console.ReadKey();
         }
     }
-
 }
+
+
 
