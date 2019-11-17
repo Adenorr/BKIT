@@ -1,0 +1,11 @@
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\bin\Debug\netcoreapp2.1\lab1.deps.json
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\bin\Debug\netcoreapp2.1\lab1.runtimeconfig.json
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\bin\Debug\netcoreapp2.1\lab1.runtimeconfig.dev.json
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\bin\Debug\netcoreapp2.1\lab1.dll
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\bin\Debug\netcoreapp2.1\lab1.pdb
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\obj\Debug\netcoreapp2.1\lab1.csprojAssemblyReference.cache
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\obj\Debug\netcoreapp2.1\lab1.csproj.CoreCompileInputs.cache
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\obj\Debug\netcoreapp2.1\lab1.AssemblyInfoInputs.cache
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\obj\Debug\netcoreapp2.1\lab1.AssemblyInfo.cs
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\obj\Debug\netcoreapp2.1\lab1.dll
+E:\Сергей\Рабочий стол\Sveta_git\BKIT\lab1\obj\Debug\netcoreapp2.1\lab1.pdb

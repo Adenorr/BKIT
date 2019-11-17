@@ -1,0 +1,36 @@
+{
+  "profiles": {
+    "L1": {
+      "commandName": "Project",
+      "commandLineArgs": "-5 t -6"
+    },
+    "newProfile1": {
+      "commandName": "Project",
+      "commandLineArgs": "30 20 10"
+    },
+    "newProfile2": {
+      "commandName": "Project",
+      "commandLineArgs": "5 0 -30"
+    },
+    "newProfile3": {
+      "commandName": "Project",
+      "commandLineArgs": "10 -9 3"
+    },
+    "newProfile4": {
+      "commandName": "Project",
+      "commandLineArgs": "12 0 -2"
+    },
+    "newProfile5": {
+      "commandName": "Project",
+      "commandLineArgs": "9 0 0"
+    },
+    "newProfile6": {
+      "commandName": "Project",
+      "commandLineArgs": "5 7"
+    },
+    "newProfile7": {
+      "commandName": "Project",
+      "commandLineArgs": "1 -3 0"
+    }
+  }
+}
