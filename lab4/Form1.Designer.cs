@@ -30,9 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.LoadButton = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SearchText = new System.Windows.Forms.TextBox();
-            this.ListData = new System.Windows.Forms.ListBox();
             this.ShearchButton = new System.Windows.Forms.Button();
             this.aTimeWork = new System.Windows.Forms.Label();
             this.aFileName = new System.Windows.Forms.Label();
@@ -41,7 +39,11 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.ShearchTypeBox = new System.Windows.Forms.ComboBox();
+            this.Dopusk = new System.Windows.Forms.NumericUpDown();
+            this.ListData = new System.Windows.Forms.ListBox();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dopusk)).BeginInit();
             this.SuspendLayout();
             // 
             // LoadButton
@@ -54,26 +56,13 @@
             this.LoadButton.UseVisualStyleBackColor = true;
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // SearchText
             // 
             this.SearchText.Location = new System.Drawing.Point(105, 13);
             this.SearchText.Name = "SearchText";
-            this.SearchText.Size = new System.Drawing.Size(670, 22);
+            this.SearchText.Size = new System.Drawing.Size(281, 22);
             this.SearchText.TabIndex = 1;
             this.SearchText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchText_KeyDown);
-            // 
-            // ListData
-            // 
-            this.ListData.FormattingEnabled = true;
-            this.ListData.ItemHeight = 16;
-            this.ListData.Location = new System.Drawing.Point(12, 53);
-            this.ListData.Name = "ListData";
-            this.ListData.Size = new System.Drawing.Size(858, 340);
-            this.ListData.TabIndex = 2;
             // 
             // ShearchButton
             // 
@@ -147,26 +136,71 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 5000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Interval = 2000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // ShearchTypeBox
+            // 
+            this.ShearchTypeBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ShearchTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ShearchTypeBox.FormattingEnabled = true;
+            this.ShearchTypeBox.Items.AddRange(new object[] {
+            "простой поиск",
+            "алгоритм Вагнера-Фишера",
+            "алгоритм Дамерау-Левенштейна"});
+            this.ShearchTypeBox.Location = new System.Drawing.Point(454, 11);
+            this.ShearchTypeBox.Name = "ShearchTypeBox";
+            this.ShearchTypeBox.Size = new System.Drawing.Size(335, 24);
+            this.ShearchTypeBox.TabIndex = 1;
+            // 
+            // Dopusk
+            // 
+            this.Dopusk.Location = new System.Drawing.Point(393, 13);
+            this.Dopusk.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.Dopusk.Name = "Dopusk";
+            this.Dopusk.Size = new System.Drawing.Size(53, 22);
+            this.Dopusk.TabIndex = 9;
+            this.Dopusk.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // ListData
+            // 
+            this.ListData.BackColor = System.Drawing.SystemColors.Window;
+            this.ListData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ListData.FormattingEnabled = true;
+            this.ListData.ItemHeight = 18;
+            this.ListData.Location = new System.Drawing.Point(0, 41);
+            this.ListData.Name = "ListData";
+            this.ListData.Size = new System.Drawing.Size(870, 346);
+            this.ListData.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 450);
+            this.Controls.Add(this.Dopusk);
+            this.Controls.Add(this.ShearchTypeBox);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.aFileName);
             this.Controls.Add(this.aTimeWork);
             this.Controls.Add(this.ShearchButton);
-            this.Controls.Add(this.ListData);
             this.Controls.Add(this.SearchText);
             this.Controls.Add(this.LoadButton);
+            this.Controls.Add(this.ListData);
             this.Name = "Form1";
             this.Text = "Подопригорова С. ИУ5-34Б";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dopusk)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,9 +209,7 @@
         #endregion
 
         private System.Windows.Forms.Button LoadButton;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox SearchText;
-        private System.Windows.Forms.ListBox ListData;
         private System.Windows.Forms.Button ShearchButton;
         private System.Windows.Forms.Label aTimeWork;
         private System.Windows.Forms.Label aFileName;
@@ -186,6 +218,9 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ComboBox ShearchTypeBox;
+        private System.Windows.Forms.NumericUpDown Dopusk;
+        private System.Windows.Forms.ListBox ListData;
     }
 }
 
