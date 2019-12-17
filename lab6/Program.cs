@@ -10,17 +10,15 @@ namespace lab6
 {
     class Program
     {
-        public delegate int ShearhFunction(string firstText, string secondText); //какой алгоритм использовать описание делегата
-        static Func<string, string, int> FuncShearhFunc = null;  // проседура описана с использованием Func<>
-        // лямбда выражение строка 85-93
-        //при вводе имени файла можно просто нажать Enter
+        delegate int ShearhFunction(string firstText, string secondText); //какой алгоритм использовать
+        
 
         static string ConsoleOpenFile(ref List<string> ListS)
         {
             string FileNameStr = "";
             Console.Write("Открыть файл :");
             FileNameStr = Console.ReadLine();
-            if (FileNameStr == "") FileNameStr = "Новый текстовый документ.txt"; // файл по умолчанию
+            if (FileNameStr == "") FileNameStr = "Новый текстовый документ.txt";
             try
             {
                 string[] MasStr = File.ReadAllText(FileNameStr, Encoding.ASCII).Split(' ', '\t', '!', '?', ',', '-', '.', ':', '\r', '\n');
@@ -43,10 +41,12 @@ namespace lab6
         }
 
         
+        
 
         static void Main(string[] args)
         {
             ShearhFunction FuncShearh = null;
+            
             List<string> ListStr = new List<string>();
             string FileNameS = "";
             do
@@ -82,28 +82,42 @@ namespace lab6
             switch (indicator)
             {
                 case 1:
-                    FuncShearh = new ShearhFunction(lab5.LevenshteinDistance.StrContains);
-                    FuncShearhFunc = new Func<string,string,int>((firstText,secondText) =>
-                                         {
-                                            int Distance = 0;
-                                            if (firstText == secondText) Distance = 0;
-                                              else
-                                            if (firstText.Contains(secondText)) Distance = Math.Abs(firstText.Length - secondText.Length);
-                                              else Distance = 100;
-                                            return Distance;
-                                         });
+                    ShearhFunction FShearh = delegate (string firstText, string secondText)
+                    {
+                        int Distance = 0;
+                        if (firstText.Contains(secondText)) Distance = Math.Abs(firstText.Length - secondText.Length);
+                        else Distance = 100;
+                        return Distance;
+                    };
+                    DistanceFunc(substring, ListStr, (firstText, secondText) =>
+                    {
+                        int Distance = 0;
+                        if (firstText == secondText) Distance = 0;
+                        else
+                        if (firstText.Contains(secondText)) Distance = Math.Abs(firstText.Length - secondText.Length);
+                        else Distance = 100;
+                        return Distance;
+                    }, FShearh);
+                    
                     break;
                 case 2:
-                    FuncShearh = new ShearhFunction(lab5.LevenshteinDistance.DamerauLevenshtein);
-                    FuncShearhFunc = new Func<string, string, int>(lab5.LevenshteinDistance.DamerauLevenshtein); 
+                    FuncShearh = new ShearhFunction(lab5.LevenshteinDistance.DamerauLevenshtein);                    
+                    DistanceFunc(substring, ListStr, lab5.LevenshteinDistance.DamerauLevenshtein, FuncShearh);                    
+                    
                     break;
                 case 3:
-                    FuncShearh = new ShearhFunction(lab5.LevenshteinDistance.WagnerFisher);
-                    FuncShearhFunc = new Func<string, string, int>(lab5.LevenshteinDistance.WagnerFisher);
+                    FuncShearh = lab5.LevenshteinDistance.DamerauLevenshtein;
+                    Func<string, string, int> FuncShearhFunc = lab5.LevenshteinDistance.WagnerFisher;
+                    DistanceFunc(substring, ListStr, FuncShearhFunc, FuncShearh);                                      
                     break;
                 default:
                     break;
             }
+            
+        }
+
+        static void DistanceFunc(string substring, List<string> ListStr, Func<string, string, int> FuncShearhFunc, ShearhFunction FuncShearh)
+        {
             int k = 0;
             foreach (string s in ListStr)
             {
@@ -118,4 +132,5 @@ namespace lab6
             Console.ReadLine();
         }
     }
+        
 }
