@@ -10,12 +10,17 @@ namespace lab6
 {
     class Program
     {
+        public delegate int ShearhFunction(string firstText, string secondText); //какой алгоритм использовать описание делегата
+        static Func<string, string, int> FuncShearhFunc = null;  // проседура описана с использованием Func<>
+        // лямбда выражение строка 85-93
+        //при вводе имени файла можно просто нажать Enter
+
         static string ConsoleOpenFile(ref List<string> ListS)
         {
             string FileNameStr = "";
             Console.Write("Открыть файл :");
             FileNameStr = Console.ReadLine();
-            if (FileNameStr == "") FileNameStr = "Новый текстовый документ.txt";
+            if (FileNameStr == "") FileNameStr = "Новый текстовый документ.txt"; // файл по умолчанию
             try
             {
                 string[] MasStr = File.ReadAllText(FileNameStr, Encoding.ASCII).Split(' ', '\t', '!', '?', ',', '-', '.', ':', '\r', '\n');
@@ -37,13 +42,11 @@ namespace lab6
             return FileNameStr;
         }
 
-        public delegate int ShearhFunction(string firstText, string secondText); //какой алгоритм использовать
         
 
         static void Main(string[] args)
         {
             ShearhFunction FuncShearh = null;
-            Func<string, string, int> FuncShearhFunc = null;
             List<string> ListStr = new List<string>();
             string FileNameS = "";
             do
